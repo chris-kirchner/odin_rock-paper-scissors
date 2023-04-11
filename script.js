@@ -22,31 +22,36 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
   const resultMsg = "\nYou chose: " + playerSelection + "\n" + "Computer chose: " + computerSelection;
   const inputErr = "Input error. Try again."
+  const rock = "Rock crushes scissors!";
+  const paper = "Paper covers rock!";
+  const scissors = "Scissors cut paper!";
   
   if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
-    console.log(inputErr);
-    alert(inputErr);
+    return inputErr;
   }
   else if (playerSelection === computerSelection) {
-    console.log("It's a tie!" + resultMsg);
-    alert("It's a tie!" + resultMsg);
+    return "It's a tie!" + resultMsg;
   }
   else if (playerSelection === "rock" && computerSelection === "scissors") {
-    console.log("You win!" + resultMsg);
-    alert("You win!" + resultMsg);
+    return "You win! " + rock + resultMsg;
   } 
   else if (playerSelection === "paper" && computerSelection === "rock") {
-    console.log("You win!" + resultMsg);
-    alert("You win!" + resultMsg);
+    return "You win! " + paper + resultMsg;
   }
   else if (playerSelection === "scissors" && computerSelection === "paper") {
-    console.log("You win!" + resultMsg);
-    alert("You win!" + resultMsg);
+    return "You win! " + scissors + resultMsg;
   }
   else {
-    console.log("You lose!" + resultMsg);
-    alert("You lose!" + resultMsg);
+    if (computerSelection === "rock") {
+      return "You lose! " + rock + resultMsg;
+    }
+    else if (computerSelection === "paper") {
+      return "You lose! " + paper + resultMsg;
+    }
+    else {
+      return "You lose! " + scissors + resultMsg;
+    }
   }
 }
 
-playRound(getPlayerChoice(), getComputerChoice());
+console.log(playRound(getPlayerChoice(), getComputerChoice()));
