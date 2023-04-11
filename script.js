@@ -6,3 +6,11 @@
 //   if paper: win if CPU chose rock, lose if CPU chose scissors
 //   if scissors: win if CPU chose paper, lose if CPU chose rock
 // game reset
+
+const rps = ["rock", "paper", "scissors"];
+
+function getComputerChoice() {
+  return rps[Math.floor(Math.random() * 3)];
+}
+
+console.log(getComputerChoice());
