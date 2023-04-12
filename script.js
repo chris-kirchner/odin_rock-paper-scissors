@@ -82,11 +82,30 @@ function game(n) {
       totalTie += 1;
     }
   }
-  return (
-    "You won " + totalWin + " of " + n + " games.\n" +
-    "You lost " + totalLose + " of " + n + " games.\n" +
-    "You tied " + totalTie + " of " + n + " games."
-  );
+  if (totalWin > totalLose) {
+    return (
+      "You won " + totalWin + " of " + n + " games.\n" +
+      "The computer won " + totalLose + " of " + n + " games.\n" +
+      "You tied " + totalTie + " of " + n + " games.\n" +
+      "*****YOU WIN!*****"
+    );
+  }
+  else if (totalWin < totalLose) {
+    return (
+      "You won " + totalWin + " of " + n + " games.\n" +
+      "The computer won " + totalLose + " of " + n + " games.\n" +
+      "You tied " + totalTie + " of " + n + " games.\n" +
+      "*****YOU LOSE!*****"
+    );
+  }
+  else {
+    return (
+      "You won " + totalWin + " of " + n + " games.\n" +
+      "The computer won " + totalLose + " of " + n + " games.\n" +
+      "You tied " + totalTie + " of " + n + " games.\n" +
+      "*****YOU TIED!*****"
+    );
+  }
 }
 
 console.log(game(5));
