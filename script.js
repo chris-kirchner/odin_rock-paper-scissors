@@ -19,39 +19,74 @@ function getComputerChoice() {
   return rps[Math.floor(Math.random() * 3)];
 }
 
+let playerWin = "lose";
+
 function playRound(playerSelection, computerSelection) {
   const resultMsg = "\nYou chose: " + playerSelection + "\n" + "Computer chose: " + computerSelection;
   const inputErr = "Input error. Try again."
-  const rock = "Rock crushes scissors!";
-  const paper = "Paper covers rock!";
-  const scissors = "Scissors cut paper!";
+  const rockWin = "Rock crushes scissors!";
+  const paperWin = "Paper covers rock!";
+  const scissorsWin = "Scissors cut paper!";
   
   if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
+    playerWin = "error";
     return inputErr;
   }
   else if (playerSelection === computerSelection) {
+    playerWin = "tie";
     return "It's a tie!" + resultMsg;
   }
   else if (playerSelection === "rock" && computerSelection === "scissors") {
-    return "You win! " + rock + resultMsg;
+    playerWin = "win";
+    return "You win! " + rockWin + resultMsg;
   } 
   else if (playerSelection === "paper" && computerSelection === "rock") {
-    return "You win! " + paper + resultMsg;
+    playerWin = "win";
+    return "You win! " + paperWin + resultMsg;
   }
   else if (playerSelection === "scissors" && computerSelection === "paper") {
-    return "You win! " + scissors + resultMsg;
+    playerWin = "win";
+    return "You win! " + scissorsWin + resultMsg;
   }
   else {
+    playerWin = "lose";
     if (computerSelection === "rock") {
-      return "You lose! " + rock + resultMsg;
+      return "You lose! " + rockWin + resultMsg;
     }
     else if (computerSelection === "paper") {
-      return "You lose! " + paper + resultMsg;
+      return "You lose! " + paperWin + resultMsg;
     }
     else {
-      return "You lose! " + scissors + resultMsg;
+      return "You lose! " + scissorsWin + resultMsg;
     }
   }
 }
 
-console.log(playRound(getPlayerChoice(), getComputerChoice()));
+// console.log(playerWin);
+// console.log(playRound(getPlayerChoice(), getComputerChoice()));
+
+function game(n) {
+  console.log("Playing " + n + " games! Here we go!");
+  let totalWin = 0;
+  let totalLose = 0;
+  let totalTie = 0;
+  for (let i = 0; i < n; i++) {
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    if (playerWin === "win") {
+      totalWin += 1;
+    }
+    else if (playerWin === "lose") {
+      totalLose += 1;
+    }
+    else if (playerWin === "tie") {
+      totalTie += 1;
+    }
+  }
+  return (
+    "You won " + totalWin + " of " + n + " games.\n" +
+    "You lost " + totalLose + " of " + n + " games.\n" +
+    "You tied " + totalTie + " of " + n + " games."
+  );
+}
+
+console.log(game(5));
