@@ -9,11 +9,16 @@
 
 const rps = ["rock", "paper", "scissors"];
 
-// let playerSelection = prompt("Choose rock, paper, or scissors").toLowerCase();
+document.addEventListener("click", e => {
+  if (e.target.nodeName === "BUTTON") {
+    console.log(playRound(e.target.id, getComputerChoice()));
+  };
+});
 
-function getPlayerChoice () {
-  return prompt("Choose rock, paper, or scissors").toLowerCase();
-}
+function getPlayerChoice() {
+  // return prompt("Choose rock, paper, or scissors").toLowerCase();
+};
+
 
 function getComputerChoice() {
   return rps[Math.floor(Math.random() * 3)];
@@ -62,9 +67,6 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-// console.log(playerWin);
-// console.log(playRound(getPlayerChoice(), getComputerChoice()));
-
 function game(n) {
   console.log("Playing " + n + " games! Here we go!");
   let totalWin = 0;
@@ -108,4 +110,4 @@ function game(n) {
   }
 }
 
-console.log(game(5));
+// console.log(game(1));
