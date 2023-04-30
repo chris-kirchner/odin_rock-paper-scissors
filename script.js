@@ -11,7 +11,7 @@ const rps = ["rock", "paper", "scissors"];
 
 document.addEventListener("click", e => {
   if (e.target.nodeName === "BUTTON") {
-    console.log(playRound(e.target.id, getComputerChoice()));
+    playRound(e.target.id, getComputerChoice());
   };
 });
 
@@ -25,9 +25,14 @@ function getComputerChoice() {
 }
 
 let playerWin = "lose";
+const result1 = document.querySelector("#result1");
+const result2 = document.querySelector("#result2");
+const result3 = document.querySelector("#result3");
+
 
 function playRound(playerSelection, computerSelection) {
-  const resultMsg = "\nYou chose: " + playerSelection + "\n" + "Computer chose: " + computerSelection;
+  const playerChoice = "You chose: " + playerSelection;
+  const computerChoice = "Computer chose: " + computerSelection;
   const inputErr = "Input error. Try again."
   const rockWin = "Rock crushes scissors!";
   const paperWin = "Paper covers rock!";
@@ -35,36 +40,38 @@ function playRound(playerSelection, computerSelection) {
   
   if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
     playerWin = "error";
-    return inputErr;
+    result1.textContent = inputErr;
   }
   else if (playerSelection === computerSelection) {
     playerWin = "tie";
-    return "It's a tie!" + resultMsg;
+    result1.textContent = "It's a tie!";
   }
   else if (playerSelection === "rock" && computerSelection === "scissors") {
     playerWin = "win";
-    return "You win! " + rockWin + resultMsg;
+    result1.textContent = "You win! " + rockWin;
   } 
   else if (playerSelection === "paper" && computerSelection === "rock") {
     playerWin = "win";
-    return "You win! " + paperWin + resultMsg;
+    result1.textContent = "You win! " + paperWin;
   }
   else if (playerSelection === "scissors" && computerSelection === "paper") {
     playerWin = "win";
-    return "You win! " + scissorsWin + resultMsg;
+    result1.textContent = "You win! " + scissorsWin;
   }
   else {
     playerWin = "lose";
     if (computerSelection === "rock") {
-      return "You lose! " + rockWin + resultMsg;
+      result1.textContent = "You lose! " + rockWin;
     }
     else if (computerSelection === "paper") {
-      return "You lose! " + paperWin + resultMsg;
+      result1.textContent = "You lose! " + paperWin;
     }
     else {
-      return "You lose! " + scissorsWin + resultMsg;
+      result1.textContent = "You lose! " + scissorsWin;
     }
   }
+  result2.textContent = playerChoice;
+  result3.textContent = computerChoice;
 }
 
 function game(n) {
