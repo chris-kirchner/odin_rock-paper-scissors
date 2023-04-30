@@ -8,6 +8,19 @@
 // game reset
 
 const rps = ["rock", "paper", "scissors"];
+let playerWin = "lose";
+let totalWin = 0;
+let totalLose = 0;
+let totalTie = 0;
+let playerScore = 0;
+let computerScore = 0;
+const result1 = document.querySelector("#result1");
+const result2 = document.querySelector("#result2");
+const result3 = document.querySelector("#result3");
+const pScore = document.querySelector("#playerScore");
+const cScore = document.querySelector("#computerScore");
+const gameOverScore = document.querySelector("#gameOverScore");
+
 
 document.addEventListener("click", e => {
   if (e.target.nodeName === "BUTTON") {
@@ -15,20 +28,13 @@ document.addEventListener("click", e => {
   };
 });
 
-function getPlayerChoice() {
+// function getPlayerChoice() {
   // return prompt("Choose rock, paper, or scissors").toLowerCase();
-};
-
+// };
 
 function getComputerChoice() {
   return rps[Math.floor(Math.random() * 3)];
 }
-
-let playerWin = "lose";
-const result1 = document.querySelector("#result1");
-const result2 = document.querySelector("#result2");
-const result3 = document.querySelector("#result3");
-
 
 function playRound(playerSelection, computerSelection) {
   const playerChoice = "You chose: " + playerSelection;
@@ -37,84 +43,111 @@ function playRound(playerSelection, computerSelection) {
   const rockWin = "Rock crushes scissors!";
   const paperWin = "Paper covers rock!";
   const scissorsWin = "Scissors cut paper!";
-  
-  if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
-    playerWin = "error";
-    result1.textContent = inputErr;
-  }
-  else if (playerSelection === computerSelection) {
-    playerWin = "tie";
-    result1.textContent = "It's a tie!";
-  }
-  else if (playerSelection === "rock" && computerSelection === "scissors") {
-    playerWin = "win";
-    result1.textContent = "You win! " + rockWin;
-  } 
-  else if (playerSelection === "paper" && computerSelection === "rock") {
-    playerWin = "win";
-    result1.textContent = "You win! " + paperWin;
-  }
-  else if (playerSelection === "scissors" && computerSelection === "paper") {
-    playerWin = "win";
-    result1.textContent = "You win! " + scissorsWin;
-  }
-  else {
-    playerWin = "lose";
-    if (computerSelection === "rock") {
-      result1.textContent = "You lose! " + rockWin;
+
+  if (playerScore < 5 && computerScore < 5) {
+    if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
+      playerWin = "error";
+      result1.textContent = inputErr;
     }
-    else if (computerSelection === "paper") {
-      result1.textContent = "You lose! " + paperWin;
+    else if (playerSelection === computerSelection) {
+      playerWin = "tie";
+      result1.textContent = "It's a tie!";
+    }
+    else if (playerSelection === "rock" && computerSelection === "scissors") {
+      playerWin = "win";
+      result1.textContent = "You win! " + rockWin;
+    } 
+    else if (playerSelection === "paper" && computerSelection === "rock") {
+      playerWin = "win";
+      result1.textContent = "You win! " + paperWin;
+    }
+    else if (playerSelection === "scissors" && computerSelection === "paper") {
+      playerWin = "win";
+      result1.textContent = "You win! " + scissorsWin;
     }
     else {
-      result1.textContent = "You lose! " + scissorsWin;
+      playerWin = "lose";
+      if (computerSelection === "rock") {
+        result1.textContent = "You lose! " + rockWin;
+      }
+      else if (computerSelection === "paper") {
+        result1.textContent = "You lose! " + paperWin;
+      }
+      else {
+        result1.textContent = "You lose! " + scissorsWin;
+      }
     }
+    result2.textContent = playerChoice;
+    result3.textContent = computerChoice;
+    scoreTally();
+    
+    if (playerScore === 5) {
+      gameOverScore.textContent = "YOU WIN!";
+    }
+    else if (computerScore === 5) {
+      gameOverScore.textContent = "YOU LOSE!";
+    }
+    console.log("Player:" + playerScore, "Computer:" + computerScore, "Tie:" + totalTie);
   }
-  result2.textContent = playerChoice;
-  result3.textContent = computerChoice;
-}
+};
 
-function game(n) {
-  console.log("Playing " + n + " games! Here we go!");
-  let totalWin = 0;
-  let totalLose = 0;
-  let totalTie = 0;
-  for (let i = 0; i < n; i++) {
-    console.log(playRound(getPlayerChoice(), getComputerChoice()));
-    if (playerWin === "win") {
-      totalWin += 1;
-    }
-    else if (playerWin === "lose") {
-      totalLose += 1;
-    }
-    else if (playerWin === "tie") {
-      totalTie += 1;
-    }
+function scoreTally() {
+  if (playerWin === "win") {
+    totalWin += 1;
+    playerScore += 1;
+    pScore.textContent = playerScore;
   }
-  if (totalWin > totalLose) {
-    return (
-      "You won " + totalWin + " of " + n + " games.\n" +
-      "The computer won " + totalLose + " of " + n + " games.\n" +
-      "You tied " + totalTie + " of " + n + " games.\n" +
-      "*****YOU WIN!*****"
-    );
+  else if (playerWin === "lose") {
+    totalLose += 1;
+    computerScore += 1;
+    cScore.textContent = computerScore;
   }
-  else if (totalWin < totalLose) {
-    return (
-      "You won " + totalWin + " of " + n + " games.\n" +
-      "The computer won " + totalLose + " of " + n + " games.\n" +
-      "You tied " + totalTie + " of " + n + " games.\n" +
-      "*****YOU LOSE!*****"
-    );
-  }
-  else {
-    return (
-      "You won " + totalWin + " of " + n + " games.\n" +
-      "The computer won " + totalLose + " of " + n + " games.\n" +
-      "You tied " + totalTie + " of " + n + " games.\n" +
-      "*****YOU TIED!*****"
-    );
-  }
-}
+  else if (playerWin === "tie") {
+    totalTie += 1;
+  };
+};
 
-// console.log(game(1));
+
+// function game(n) {
+//   // console.log("Playing " + n + " games! Here we go!");
+//   let totalWin = 0;
+//   let totalLose = 0;
+//   let totalTie = 0;
+//   for (let i = 0; i < n; i++) {
+//     if (playerWin === "win") {
+//       totalWin += 1;
+//     }
+//     else if (playerWin === "lose") {
+//       totalLose += 1;
+//     }
+//     else if (playerWin === "tie") {
+//       totalTie += 1;
+//     }
+//   }
+//   if (totalWin > totalLose) {
+//     return (
+//       "You won " + totalWin + " of " + n + " games.\n" +
+//       "The computer won " + totalLose + " of " + n + " games.\n" +
+//       "You tied " + totalTie + " of " + n + " games.\n" +
+//       "*****YOU WIN!*****"
+//     );
+//   }
+//   else if (totalWin < totalLose) {
+//     return (
+//       "You won " + totalWin + " of " + n + " games.\n" +
+//       "The computer won " + totalLose + " of " + n + " games.\n" +
+//       "You tied " + totalTie + " of " + n + " games.\n" +
+//       "*****YOU LOSE!*****"
+//     );
+//   }
+//   else {
+//     return (
+//       "You won " + totalWin + " of " + n + " games.\n" +
+//       "The computer won " + totalLose + " of " + n + " games.\n" +
+//       "You tied " + totalTie + " of " + n + " games.\n" +
+//       "*****YOU TIED!*****"
+//     );
+//   };
+// };
+
+// console.log(game(5));
