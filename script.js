@@ -43,6 +43,8 @@ function playRound(playerSelection, computerSelection) {
   const rockWin = "Rock crushes scissors!";
   const paperWin = "Paper covers rock!";
   const scissorsWin = "Scissors cut paper!";
+  const winRound = "You win the round! ";
+  const loseRound = "You lose the round! ";
 
   if (playerScore < 5 && computerScore < 5) {
     if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
@@ -55,40 +57,40 @@ function playRound(playerSelection, computerSelection) {
     }
     else if (playerSelection === "rock" && computerSelection === "scissors") {
       playerWin = "win";
-      result1.textContent = "You win! " + rockWin;
+      result1.textContent = winRound + rockWin;
     } 
     else if (playerSelection === "paper" && computerSelection === "rock") {
       playerWin = "win";
-      result1.textContent = "You win! " + paperWin;
+      result1.textContent = winRound + paperWin;
     }
     else if (playerSelection === "scissors" && computerSelection === "paper") {
       playerWin = "win";
-      result1.textContent = "You win! " + scissorsWin;
+      result1.textContent = winRound + scissorsWin;
     }
     else {
       playerWin = "lose";
       if (computerSelection === "rock") {
-        result1.textContent = "You lose! " + rockWin;
+        result1.textContent = loseRound + rockWin;
       }
       else if (computerSelection === "paper") {
-        result1.textContent = "You lose! " + paperWin;
+        result1.textContent = loseRound + paperWin;
       }
       else {
-        result1.textContent = "You lose! " + scissorsWin;
+        result1.textContent = loseRound + scissorsWin;
       }
     }
     result2.textContent = playerChoice;
     result3.textContent = computerChoice;
     scoreTally();
-    
-    if (playerScore === 5) {
-      gameOverScore.textContent = "YOU WIN!";
-    }
-    else if (computerScore === 5) {
-      gameOverScore.textContent = "YOU LOSE!";
-    }
-    console.log("Player:" + playerScore, "Computer:" + computerScore, "Tie:" + totalTie);
+  };
+  
+  if (playerScore === 5) {
+    gameOverScore.textContent = "YOU WIN THE GAME!";
   }
+  else if (computerScore === 5) {
+    gameOverScore.textContent = "YOU LOSE THE GAME!";
+  }
+  console.log("Player:" + playerScore, "Computer:" + computerScore, "Tie:" + totalTie);
 };
 
 function scoreTally() {
