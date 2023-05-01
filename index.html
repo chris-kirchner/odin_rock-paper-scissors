@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="./style.css">
   <script src="./script.js" defer></script>
 <title>Rock Paper Scissors</title>
 <body>
-  <div>
+  <div id="title">
+    <h2>Let's play</h2>
     <h1>Rock, Paper, Scissors!</h1>
-    <h2>(First to 5 points wins)</h2>
+    <p>(First to 5 points wins)</p>
   </div>
+  
   <button id="rock">Rock</button>
   <button id="paper">Paper</button>
   <button id="scissors">Scissors</button>
@@ -16,6 +19,9 @@
   <div id="scoreboard">
     <p>Player: <span id="playerScore">0</span></p>
     <p>Computer: <span id="computerScore">0</span></p>
+  </div>
+
+  <div id="gameOver">
     <p id="gameOverScore"></p>
   </div>
   
