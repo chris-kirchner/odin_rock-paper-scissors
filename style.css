@@ -3,10 +3,14 @@ html {
   height: 100vh;
   width: 100vw;
   background-repeat: no-repeat;
-  background-image: radial-gradient(#25333f, #19232b);
+  background-image: radial-gradient(#243d53, #192a35);
   /* background-color: #25333f; */
-  color: #ddd;
+  color: #f5f5f5;
   text-align: center;
+}
+
+body * {
+  border: .3px solid gray;
 }
 
 div#title {
@@ -22,13 +26,29 @@ div#title {
   font-size: 40px;
 }
 
+#buttons {
+  margin-bottom: 20px;
+}
+
 button {
   padding: 10px 20px;
-  border-radius: 10px;
-  border: 4px solid #113044;
-  background-image: linear-gradient(180deg, #0073c0 40%, #5ba9dd);
+  border-radius: 7px;
+  border: none;
+  /* border: 2px solid #0073c0; */
+  background-color: #0065a8;
   color: white;
   font-size: 20px;
   font-weight: bold;
-  text-shadow: 0px 2px #031d2e;
+  margin: 0px 10px;
+  transition: background-color 0.5s;
+}
+
+button:hover {
+  background-color: #0081bd;
+  transition: background-color 0.5s;
+}
+
+button:active {
+  background-color: #32abe2;
+  transition: background-color 0.2s;
 }
