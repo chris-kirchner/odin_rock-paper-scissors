@@ -82,6 +82,10 @@ button:active {
   gap: 40px;
 }
 
+#playerChoice, #computerChoice {
+  width: 150px;
+}
+
 .selection {
   font-size: 24px;
   font-weight: 600;
