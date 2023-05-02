@@ -15,8 +15,13 @@ let totalTie = 0;
 let playerScore = 0;
 let computerScore = 0;
 const result1 = document.querySelector("#result1");
-const result2 = document.querySelector("#result2");
+const roundResultText = document.querySelector("#roundResultText");
+const playerChoice1 = document.querySelector("#playerChoice1");
+const playerChoice2 = document.querySelector("#playerChoice2");
+const computerChoice1 = document.querySelector("#computerChoice1");
+const computerChoice2 = document.querySelector("#computerChoice2")
 const result3 = document.querySelector("#result3");
+const result4 = document.querySelector("#result4");
 const pScore = document.querySelector("#playerScore");
 const cScore = document.querySelector("#computerScore");
 const gameOverScore = document.querySelector("#gameOverScore");
@@ -37,12 +42,14 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  const playerChoice = "You chose: " + playerSelection;
-  const computerChoice = "Computer chose: " + computerSelection;
+  const pChoice1 = "You chose:";
+  let pChoice2 = playerSelection;
+  const cChoice1 = "Computer chose:";
+  let cChoice2 = computerSelection;
   const inputErr = "Input error. Try again."
-  const rockWin = "Rock crushes scissors!";
-  const paperWin = "Paper covers rock!";
-  const scissorsWin = "Scissors cut paper!";
+  const rockWin = "Rock crushes scissors";
+  const paperWin = "Paper covers rock";
+  const scissorsWin = "Scissors cut paper";
   const winRound = "You win the round! ";
   const loseRound = "You lose the round! ";
 
@@ -50,37 +57,47 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
       playerWin = "error";
       result1.textContent = inputErr;
+      roundResultText.textContent = "";
     }
     else if (playerSelection === computerSelection) {
       playerWin = "tie";
       result1.textContent = "It's a tie!";
+      roundResultText.textContent = "";
     }
     else if (playerSelection === "rock" && computerSelection === "scissors") {
       playerWin = "win";
-      result1.textContent = winRound + rockWin;
+      result1.textContent = winRound;
+      roundResultText.textContent = rockWin;
     } 
     else if (playerSelection === "paper" && computerSelection === "rock") {
       playerWin = "win";
-      result1.textContent = winRound + paperWin;
+      result1.textContent = winRound;
+      roundResultText.textContent = paperWin;
     }
     else if (playerSelection === "scissors" && computerSelection === "paper") {
       playerWin = "win";
-      result1.textContent = winRound + scissorsWin;
+      result1.textContent = winRound;
+      roundResultText.textContent = scissorsWin;
     }
     else {
       playerWin = "lose";
       if (computerSelection === "rock") {
-        result1.textContent = loseRound + rockWin;
+        result1.textContent = loseRound;
+        roundResultText.textContent = rockWin;
       }
       else if (computerSelection === "paper") {
-        result1.textContent = loseRound + paperWin;
+        result1.textContent = loseRound;
+        roundResultText.textContent = paperWin;
       }
       else {
-        result1.textContent = loseRound + scissorsWin;
+        result1.textContent = loseRound;
+        roundResultText.textContent = scissorsWin;
       }
     }
-    result2.textContent = playerChoice;
-    result3.textContent = computerChoice;
+    playerChoice1.textContent = pChoice1;
+    playerChoice2.textContent = pChoice2;
+    computerChoice1.textContent = cChoice1;
+    computerChoice2.textContent = cChoice2;
     scoreTally();
   };
   

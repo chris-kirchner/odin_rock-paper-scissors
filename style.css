@@ -28,6 +28,9 @@ div#title {
 
 #buttons {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 button {
@@ -39,7 +42,6 @@ button {
   color: white;
   font-size: 20px;
   font-weight: bold;
-  margin: 0px 10px;
   transition: background-color 0.5s;
 }
 
@@ -51,4 +53,42 @@ button:hover {
 button:active {
   background-color: #32abe2;
   transition: background-color 0.2s;
+}
+
+#scoreboard {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.score {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+#roundResult {
+  margin-bottom: 10px;
+}
+
+#roundResultText {
+  font-size: 20px;
+}
+
+#roundChoice {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.selection {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+#result1 {
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 10px;
 }
