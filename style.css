@@ -9,9 +9,9 @@ html {
   text-align: center;
 }
 
-body * {
+/* body * {
   border: .3px solid gray;
-}
+} */
 
 div#title {
   margin-top: 50px;
@@ -95,4 +95,22 @@ button:active {
   font-size: 30px;
   font-weight: 500;
   margin-bottom: 10px;
+}
+
+#result1.green {
+  color: #7cf1bc;
+  font-weight: 800;
+}
+
+#result1.red {
+  color: #f17c7c;
+  font-weight: 800;
+}
+
+.shaded {
+  color: #ffd2d2;
+}
+
+.highlight {
+  color: #cfffe9;
 }

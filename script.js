@@ -50,8 +50,18 @@ function playRound(playerSelection, computerSelection) {
   const rockWin = "Rock crushes scissors";
   const paperWin = "Paper covers rock";
   const scissorsWin = "Scissors cut paper";
-  const winRound = "You win the round! ";
-  const loseRound = "You lose the round! ";
+  const winRound = "You win the round!";
+  const loseRound = "You lose the round!";
+  result1.classList.remove("green");
+  result1.classList.remove("red");
+  playerChoice1.classList.remove("shaded");
+  playerChoice2.classList.remove("shaded");
+  playerChoice1.classList.remove("highlight");
+  playerChoice2.classList.remove("highlight");
+  computerChoice1.classList.remove("shaded");
+  computerChoice2.classList.remove("shaded");
+  computerChoice1.classList.remove("highlight");
+  computerChoice2.classList.remove("highlight");
 
   if (playerScore < 5 && computerScore < 5) {
     if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
@@ -66,31 +76,50 @@ function playRound(playerSelection, computerSelection) {
     }
     else if (playerSelection === "rock" && computerSelection === "scissors") {
       playerWin = "win";
+      playerChoice1.classList.add("highlight");
+      playerChoice2.classList.add("highlight");
+      computerChoice1.classList.add("shaded");
+      computerChoice2.classList.add("shaded");
       result1.textContent = winRound;
+      result1.classList.add("green");
       roundResultText.textContent = rockWin;
     } 
     else if (playerSelection === "paper" && computerSelection === "rock") {
       playerWin = "win";
+      playerChoice1.classList.add("highlight");
+      playerChoice2.classList.add("highlight");
+      computerChoice1.classList.add("shaded");
+      computerChoice2.classList.add("shaded");
       result1.textContent = winRound;
+      result1.classList.add("green");
       roundResultText.textContent = paperWin;
     }
     else if (playerSelection === "scissors" && computerSelection === "paper") {
       playerWin = "win";
+      playerChoice1.classList.add("highlight");
+      playerChoice2.classList.add("highlight");
+      computerChoice1.classList.add("shaded");
+      computerChoice2.classList.add("shaded");
       result1.textContent = winRound;
+      result1.classList.add("green");
       roundResultText.textContent = scissorsWin;
     }
     else {
+      playerChoice1.classList.add("shaded");
+      playerChoice2.classList.add("shaded");
+      computerChoice1.classList.add("highlight");
+      computerChoice2.classList.add("highlight");
       playerWin = "lose";
+      result1.textContent = loseRound;
+      result1.classList.add("red");
+
       if (computerSelection === "rock") {
-        result1.textContent = loseRound;
         roundResultText.textContent = rockWin;
       }
       else if (computerSelection === "paper") {
-        result1.textContent = loseRound;
         roundResultText.textContent = paperWin;
       }
       else {
-        result1.textContent = loseRound;
         roundResultText.textContent = scissorsWin;
       }
     }
