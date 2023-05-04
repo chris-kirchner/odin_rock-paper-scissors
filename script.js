@@ -24,7 +24,7 @@ const result3 = document.querySelector("#result3");
 const result4 = document.querySelector("#result4");
 const pScore = document.querySelector("#playerScore");
 const cScore = document.querySelector("#computerScore");
-const gameOverScore = document.querySelector("#gameOverScore");
+const gameOverMsg = document.querySelector("#gameOverMsg");
 
 
 document.addEventListener("click", e => {
@@ -32,10 +32,6 @@ document.addEventListener("click", e => {
     playRound(e.target.id, getComputerChoice());
   };
 });
-
-// function getPlayerChoice() {
-  // return prompt("Choose rock, paper, or scissors").toLowerCase();
-// };
 
 function getComputerChoice() {
   return rps[Math.floor(Math.random() * 3)];
@@ -62,6 +58,8 @@ function playRound(playerSelection, computerSelection) {
   computerChoice2.classList.remove("shaded");
   computerChoice1.classList.remove("highlight");
   computerChoice2.classList.remove("highlight");
+  gameOverMsg.classList.remove("win");
+  gameOverMsg.classList.remove("lose");
 
   if (playerScore < 5 && computerScore < 5) {
     if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
@@ -72,7 +70,7 @@ function playRound(playerSelection, computerSelection) {
     else if (playerSelection === computerSelection) {
       playerWin = "tie";
       result1.textContent = "It's a tie!";
-      roundResultText.textContent = "";
+      roundResultText.textContent = playerSelection + " bounces off " + computerSelection;
     }
     else if (playerSelection === "rock" && computerSelection === "scissors") {
       playerWin = "win";
@@ -131,10 +129,12 @@ function playRound(playerSelection, computerSelection) {
   };
   
   if (playerScore === 5) {
-    gameOverScore.textContent = "YOU WIN THE GAME!";
+    gameOverMsg.classList.add("win");
+    gameOverMsg.textContent = "YOU WIN THE GAME!";
   }
   else if (computerScore === 5) {
-    gameOverScore.textContent = "YOU LOSE THE GAME!";
+    gameOverMsg.classList.add("lose");
+    gameOverMsg.textContent = "YOU LOSE THE GAME!";
   }
   console.log("Player:" + playerScore, "Computer:" + computerScore, "Tie:" + totalTie);
 };
@@ -154,48 +154,3 @@ function scoreTally() {
     totalTie += 1;
   };
 };
-
-
-// function game(n) {
-//   // console.log("Playing " + n + " games! Here we go!");
-//   let totalWin = 0;
-//   let totalLose = 0;
-//   let totalTie = 0;
-//   for (let i = 0; i < n; i++) {
-//     if (playerWin === "win") {
-//       totalWin += 1;
-//     }
-//     else if (playerWin === "lose") {
-//       totalLose += 1;
-//     }
-//     else if (playerWin === "tie") {
-//       totalTie += 1;
-//     }
-//   }
-//   if (totalWin > totalLose) {
-//     return (
-//       "You won " + totalWin + " of " + n + " games.\n" +
-//       "The computer won " + totalLose + " of " + n + " games.\n" +
-//       "You tied " + totalTie + " of " + n + " games.\n" +
-//       "*****YOU WIN!*****"
-//     );
-//   }
-//   else if (totalWin < totalLose) {
-//     return (
-//       "You won " + totalWin + " of " + n + " games.\n" +
-//       "The computer won " + totalLose + " of " + n + " games.\n" +
-//       "You tied " + totalTie + " of " + n + " games.\n" +
-//       "*****YOU LOSE!*****"
-//     );
-//   }
-//   else {
-//     return (
-//       "You won " + totalWin + " of " + n + " games.\n" +
-//       "The computer won " + totalLose + " of " + n + " games.\n" +
-//       "You tied " + totalTie + " of " + n + " games.\n" +
-//       "*****YOU TIED!*****"
-//     );
-//   };
-// };
-
-// console.log(game(5));
