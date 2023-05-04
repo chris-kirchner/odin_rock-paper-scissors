@@ -39,29 +39,33 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
   const pChoice1 = "You chose:";
-  let pChoice2 = playerSelection;
+  let pChoice2 = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
   const cChoice1 = "Computer chose:";
-  let cChoice2 = computerSelection;
+  let cChoice2 = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
   const inputErr = "Input error. Try again."
-  const rockWin = "Rock crushes scissors";
-  const paperWin = "Paper covers rock";
-  const scissorsWin = "Scissors cut paper";
+  const rockWin = "Rock crushes Scissors";
+  const rockLose = "Rock covered by Paper"
+  const paperWin = "Paper covers Rock";
+  const paperLose = "Paper cut by Scissors";
+  const scissorsWin = "Scissors cut Paper";
+  const scissorsLose = "Scissors crushed by Rock";
   const winRound = "You win the round!";
   const loseRound = "You lose the round!";
-  result1.classList.remove("green");
-  result1.classList.remove("red");
-  playerChoice1.classList.remove("shaded");
-  playerChoice2.classList.remove("shaded");
-  playerChoice1.classList.remove("highlight");
-  playerChoice2.classList.remove("highlight");
-  computerChoice1.classList.remove("shaded");
-  computerChoice2.classList.remove("shaded");
-  computerChoice1.classList.remove("highlight");
-  computerChoice2.classList.remove("highlight");
-  gameOverMsg.classList.remove("win");
-  gameOverMsg.classList.remove("lose");
 
   if (playerScore < 5 && computerScore < 5) {
+    result1.classList.remove("green");
+    result1.classList.remove("red");
+    playerChoice1.classList.remove("shaded");
+    playerChoice2.classList.remove("shaded");
+    playerChoice1.classList.remove("highlight");
+    playerChoice2.classList.remove("highlight");
+    computerChoice1.classList.remove("shaded");
+    computerChoice2.classList.remove("shaded");
+    computerChoice1.classList.remove("highlight");
+    computerChoice2.classList.remove("highlight");
+    gameOverMsg.classList.remove("win");
+    gameOverMsg.classList.remove("lose");
+
     if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
       playerWin = "error";
       result1.textContent = inputErr;
@@ -70,7 +74,7 @@ function playRound(playerSelection, computerSelection) {
     else if (playerSelection === computerSelection) {
       playerWin = "tie";
       result1.textContent = "It's a tie!";
-      roundResultText.textContent = playerSelection + " bounces off " + computerSelection;
+      roundResultText.textContent = pChoice2 + " bounces off " + cChoice2;
     }
     else if (playerSelection === "rock" && computerSelection === "scissors") {
       playerWin = "win";
@@ -112,13 +116,13 @@ function playRound(playerSelection, computerSelection) {
       result1.classList.add("red");
 
       if (computerSelection === "rock") {
-        roundResultText.textContent = rockWin;
+        roundResultText.textContent = scissorsLose;
       }
       else if (computerSelection === "paper") {
-        roundResultText.textContent = paperWin;
+        roundResultText.textContent = rockLose;
       }
       else {
-        roundResultText.textContent = scissorsWin;
+        roundResultText.textContent = paperLose;
       }
     }
     playerChoice1.textContent = pChoice1;
